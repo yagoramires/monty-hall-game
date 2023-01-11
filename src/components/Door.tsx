@@ -2,23 +2,35 @@ import DoorModel from '../models/door';
 import styles from '../styles/Door.module.css';
 
 interface DoorProps {
-  door: DoorModel;
+  value: DoorModel;
+  onChange: (newDoor: DoorModel) => void;
 }
 
 const Door = (props: DoorProps) => {
-  const { door } = props;
+  const door = props.value;
 
-  console.log(door);
+  const alternateSelection = (e) => props.onChange(door.alternateSelection());
+
+  const open = (e) => {
+    e.stopPropagation();
+    props.onChange(door.openDoor());
+  };
 
   return (
-    <div className={styles.area}>
+    <div className={styles.area} onClick={alternateSelection}>
       <div
-        className={`${styles.structure} ${door.selected && styles.selected}`}
+        className={`${styles.structure} ${
+          door.selected && !door.open && styles.selected
+        }`}
       >
-        <div className={styles.door}>
-          <div className={styles.number}>{door.doorNumber}</div>
-          <div className={styles.handle}></div>
-        </div>
+        {door.open ? (
+          false
+        ) : (
+          <div className={styles.door}>
+            <div className={styles.number}>{door.doorNumber}</div>
+            <div className={styles.handle} onClick={open}></div>
+          </div>
+        )}
       </div>
       <div className={styles.floor}></div>
     </div>

@@ -16,7 +16,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main style={{ display: 'flex' }}>
-        <Door door={p1} />
+        <Door value={p1} onChange={(newDoor) => setP1(newDoor)} />
 
         {/* <Gift /> */}
       </main>

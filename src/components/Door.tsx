@@ -1,5 +1,6 @@
 import DoorModel from '../models/door';
 import styles from '../styles/Door.module.css';
+import Gift from './Gift';
 
 interface DoorProps {
   value: DoorModel;
@@ -23,14 +24,13 @@ const Door = (props: DoorProps) => {
           door.selected && !door.open && styles.selected
         }`}
       >
-        {door.open ? (
-          false
-        ) : (
+        {door.closed && (
           <div className={styles.door}>
             <div className={styles.number}>{door.doorNumber}</div>
             <div className={styles.handle} onClick={open}></div>
           </div>
         )}
+        {door.open && door.gift && <Gift />}
       </div>
       <div className={styles.floor}></div>
     </div>

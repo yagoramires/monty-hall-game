@@ -1,12 +1,7 @@
 import Head from 'next/head';
-import { useState } from 'react';
-import Door from '../components/Door';
-import Gift from '../components/Gift';
-import DoorModel from '../models/door';
+import Card from '../components/Card';
 
 export default function Home() {
-  const [p1, setP1] = useState(new DoorModel(1));
-
   return (
     <>
       <Head>
@@ -16,9 +11,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main style={{ display: 'flex' }}>
-        <Door value={p1} onChange={(newDoor) => setP1(newDoor)} />
-
-        {/* <Gift /> */}
+        <Card />
       </main>
     </>
   );

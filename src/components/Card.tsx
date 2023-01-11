@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { ReactComponentElement } from 'react';
 import styles from '../styles/Card.module.css';
 
-type Props = {};
+interface CardProps {
+  color?: string;
+  children?: JSX.Element;
+}
 
-const Card = (props: Props) => {
-  return <div className={styles.card}>Card</div>;
+const Card = (props: CardProps) => {
+  return (
+    <div
+      className={styles.card}
+      style={{ backgroundColor: props.color ?? '#fff' }}
+    >
+      {props.children}
+    </div>
+  );
 };
 
 export default Card;

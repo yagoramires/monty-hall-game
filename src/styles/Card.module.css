@@ -1,4 +1,9 @@
 .card {
     display: flex;
-
+    width: 300px;
+    height: 200px;
+    margin: 0 5px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
 }

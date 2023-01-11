@@ -1,7 +1,14 @@
 import Head from 'next/head';
+import Link from 'next/link';
+import { useState } from 'react';
 import Card from '../components/Card';
+import NumberInput from '../components/NumberInput';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
+  const [doors, setDoors] = useState(0);
+  const [gift, setGift] = useState(0);
+
   return (
     <>
       <Head>
@@ -10,8 +17,33 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main style={{ display: 'flex' }}>
-        <Card />
+      <main className={styles.form}>
+        <div>
+          <Card color={'#c0392c'}>
+            <h1>Monty Hall</h1>
+          </Card>
+          <Card>
+            <NumberInput
+              text='Porta com presente:'
+              value={gift}
+              onChange={(door) => setGift(door)}
+            />
+          </Card>
+        </div>
+        <div>
+          <Card>
+            <NumberInput
+              text='Quantidade de portas:'
+              value={doors}
+              onChange={(quant) => setDoors(quant)}
+            />
+          </Card>
+          <Link href={`/game/${doors}/${gift}`}>
+            <Card color={'#28a085'}>
+              <h2>INICIAR</h2>
+            </Card>
+          </Link>
+        </div>
       </main>
     </>
   );
